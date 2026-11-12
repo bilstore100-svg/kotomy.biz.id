@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VENOM STORE</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0b3fa8;--blue2:#2a63e0;--ink:#0d1b3d;--cream:#f4f0e4;--soft:#e4ebfa;--muted:#59657f}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:14px/1.5 system-ui,sans-serif;background:linear-gradient(#0b3fa812 1px,transparent 1px) 0 0/26px 26px,linear-gradient(90deg,#0b3fa812 1px,transparent 1px) 0 0/26px 26px,var(--cream);padding-bottom:120px}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--blue2);outline-offset:2px}
+h2,h3,.btn,label,.chip,.tag,.ttl,.qt,.plan,.av,.mono{font-family:'Space Mono',ui-monospace,monospace}
+h2,h3,.btn,.qt,.ttl,.chip{font-style:italic}
+h3{color:var(--blue);margin:0 0 12px;font-size:16px}
+.top{position:sticky;top:0;z-index:5;padding:12px 14px 16px;background:linear-gradient(var(--cream) 70%,transparent)}
+.topin{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ib{width:48px;height:48px;border-radius:16px;background:#fff;border:2px solid var(--ink);display:grid;place-items:center;color:var(--blue);box-shadow:0 3px 0 var(--ink);font-size:18px}
+.ttl{background:var(--blue);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:11px 22px;font-weight:700;letter-spacing:2px;font-size:12px;text-transform:uppercase;box-shadow:0 3px 0 var(--ink);white-space:nowrap}
+main{max-width:1100px;margin:0 auto;padding:0 14px}
+.panel,.card{background:#fff;border:2px solid var(--ink);border-radius:26px;padding:18px;margin-bottom:18px;box-shadow:0 4px 0 #0d1b3d1f}
+.chip,.tag{display:inline-block;background:var(--blue);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:2px 11px;font-size:11px;font-weight:700;white-space:nowrap}
+.chip.alt{background:#fff;color:var(--blue)}
+.sq{width:46px;height:46px;flex:none;border-radius:15px;background:var(--blue);border:2px solid var(--ink);display:grid;place-items:center;color:#fff}.sq.sm{width:30px;height:30px;border-radius:10px}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.qgrid .card{margin:0}
+.qa{min-height:170px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;width:100%;color:var(--blue)}
+.qrow{display:flex;justify-content:space-between;align-items:flex-start}
+.qt{font-size:16px;font-weight:700}.qs{font:11px/1.4 'Space Mono',monospace;color:var(--muted);margin-top:2px}
+.sectionhead{display:flex;align-items:center;gap:10px;margin:26px 2px 14px;color:var(--blue)}
+.sectionhead h2{margin:0;flex:1;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.seller{margin-bottom:24px}.shead{display:flex;align-items:center;gap:8px;margin:0 2px 10px;flex-wrap:wrap}
+.av{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;border:2px solid var(--ink);display:grid;place-items:center;font-weight:700}
+.shead h3{margin:0;flex:1;font-size:17px;word-break:break-all}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 14px 12px;margin:0 -14px;scrollbar-width:none}
+.rail.open{flex-wrap:wrap;overflow:visible}
+.product{flex:0 0 172px;scroll-snap-align:start;background:#fff;border:2px solid var(--ink);border-radius:22px;padding:10px;position:relative;box-shadow:0 4px 0 #0d1b3d1f}
+.pic{height:118px;border-radius:14px;background:var(--soft);display:grid;place-items:center;overflow:hidden;color:var(--blue)}.pic img{width:100%;height:100%;object-fit:cover}
+.disc{position:absolute;top:18px;left:18px;font-size:10px}
+.product h3{margin:10px 0 2px;font-size:13px}.desc{font-size:11px;color:var(--muted);min-height:32px;overflow:hidden}
+.price{font:700 16px 'Space Mono',monospace;color:var(--blue);margin:8px 0}
+.btn{background:var(--blue);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:10px 16px;font-weight:700;font-size:12px;box-shadow:0 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.btn:active{transform:translateY(3px);box-shadow:none}
+.btn.secondary{background:#fff;color:var(--blue)}.btn.danger{background:#fff;color:#b3261e}.btn.small{padding:6px 12px;font-size:11px}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.prow{border-bottom:1px dashed #0d1b3d33;padding:9px 0}
+input,textarea,select{width:100%;border:2px solid var(--ink);border-radius:16px;padding:10px 12px;background:#fff;margin:5px 0 12px}
+label{font-size:11px;font-weight:700;font-style:italic;color:var(--blue)}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hide{display:none!important}.muted{color:var(--muted);font-size:12px}.empty{text-align:center;color:var(--muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--soft);border:2px solid var(--ink);border-radius:16px;padding:12px;font-size:12px}.stat b{display:block;font:700 24px 'Space Mono',monospace;color:var(--blue)}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.plan{background:#fff;border:2px solid var(--ink);border-radius:22px;padding:16px 12px;text-align:left;color:var(--ink);box-shadow:0 4px 0 #0d1b3d1f}
+.plan i,.plan b,.plan span{display:block}.plan b{font-size:20px;margin:6px 0}.plan span{font-size:11px}
+.plan.sel{background:var(--blue);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px 6px;border-bottom:1px dashed #0d1b3d33}
+.modalback{position:fixed;inset:0;background:#0d1b3d88;display:grid;place-items:center;padding:18px;z-index:20}
+.modal{background:#fff;border:2px solid var(--ink);border-radius:26px;padding:22px;max-width:480px;width:100%;max-height:90vh;overflow:auto}
+footer{text-align:center;padding:30px 15px;color:var(--muted);font:italic 11px 'Space Mono',monospace}
+.mobile-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;width:min(calc(100% - 24px),560px);height:68px;background:var(--blue);border:2px solid var(--ink);border-radius:30px 30px 24px 24px;display:flex;z-index:8;box-shadow:0 5px 0 var(--ink)}
+.mobile-nav button{flex:1;background:none;color:#fff;font:italic 700 10px 'Space Mono',monospace;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;padding:0 0 8px}
+.ni{width:28px;height:28px;display:grid;place-items:center;transition:transform .25s}
+.mobile-nav .active .ni{background:#fff;color:var(--blue);border-radius:50%;transform:translateY(-22px) scale(1.7);box-shadow:0 0 0 2px var(--ink),0 0 0 5px var(--cream);margin-bottom:-8px}
+@media(max-width:380px){.plans,.qgrid{gap:10px}.ttl{padding:10px 14px}}
+.dpad{display:grid;grid-template-columns:repeat(3,56px);grid-template-areas:". u ." "l . r" ". d .";gap:8px;justify-content:center;margin:8px 0 12px}
+.dpad button{width:56px;height:56px;border-radius:18px;background:#fff;border:2px solid var(--ink);color:var(--blue);font-size:20px;box-shadow:0 3px 0 var(--ink);touch-action:manipulation}.dpad button:active{transform:translateY(3px);box-shadow:none}
+[data-d=u]{grid-area:u}[data-d=l]{grid-area:l}[data-d=d]{grid-area:d}[data-d=r]{grid-area:r}
+.holes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:340px;margin:14px auto}
+.hole{aspect-ratio:1;border-radius:50%;background:var(--soft);border:2px solid var(--ink);font-size:34px;box-shadow:inset 0 5px 0 #0d1b3d22;touch-action:manipulation}
+.rail{padding-top:18px}.ntag{position:absolute;top:-13px;left:12px;max-width:140px;overflow:hidden;text-overflow:ellipsis;background:var(--ink);color:#fff;border-radius:8px 8px 8px 0;padding:1px 9px;font:italic 700 10px 'Space Mono',monospace;white-space:nowrap;z-index:2;box-shadow:0 2px 0 var(--blue2)}
+.reel{font-size:46px;background:#fff;border:2px solid var(--ink);border-radius:16px;flex:1;text-align:center;padding:10px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin"><button class="ib" onclick="nav('info')" aria-label="Informasi" data-ic="info"></button><div class="ttl" id="ttl">Dashboard Menu</div><button class="ib" id="loginBtn" aria-label="Login atau profil"></button></div></header>
+<main>
+<section id="dashboard">
+<div class="qgrid">
+<button class="card qa" onclick="nav('sell')"><div class="qrow"><span class="sq" data-ic="store"></span><span class="chip">Jualan</span></div><div><div class="qt">Beli Akses</div><div class="qs">Admin Rp2.000, Owner Rp4.000</div></div></button>
+<button class="card qa" onclick="nav('info')"><div class="qrow"><span class="sq" data-ic="info"></span><span class="chip">Toko</span></div><div><div class="qt">Informasi</div><div class="qs">Kontak, DANA, dan cara pesan</div></div></button>
+</div>
+<div class="sectionhead"><span class="sq sm" data-ic="store"></span><h2>Produk penjual</h2><span class="chip" id="productCount">0 penjual</span></div>
+<div id="products"></div>
+</section>
+<section id="sell" class="hide"></section>
+<section id="game" class="hide"></section>
+<section id="info" class="hide"><div class="panel"><h3>Informasi toko</h3><div id="infoText" style="white-space:pre-wrap"></div><div id="infoEdit"></div></div></section>
+<section id="profile" class="hide"><div id="profileContent"></div></section>
+</main>
+<footer>VENOM STORE</footer>
+<nav class="mobile-nav" aria-label="Navigasi utama">
+<button class="active" data-page="dashboard"><span class="ni" data-ic="home"></span>Dashboard</button>
+<button data-page="sell"><span class="ni" data-ic="store"></span>Jual</button>
+<button data-page="game"><span class="ni" data-ic="game"></span>Game</button>
+<button data-page="info"><span class="ni" data-ic="info"></span>Info</button>
+<button data-page="profile"><span class="ni" data-ic="user"></span>Profil</button>
+</nav>
+<div id="modalRoot"></div>
+<script>
+
+const $=s=>document.querySelector(s);
+const money=n=>'Rp'+Number(n||0).toLocaleString('id-ID');
+let db=JSON.parse(localStorage.getItem('venom_db')||'null')||{
+ users:[{username:'zx25',password:'WIh1MqjPU9',role:'dev',limit:999999}],
+ products:[],info:'Selamat datang di VENOM STORE. Silakan pilih produk yang tersedia.',
+ dana:'081362636066',qris:'',devWa:''
+};
+let current=null,plan='admin';db.requests=db.requests||[];let dv=db.users.find(u=>u.username==='zx25'&&u.password==='22');if(dv)dv.password='WIh1MqjPU9';db.users=db.users.filter(u=>!(u.username==='admin'&&u.password==='admin123')&&!(u.username==='owner'&&u.password==='owner123'));save();
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.querySelectorAll('nav button, .mobile-nav button').forEach(b=>b.onclick=()=>nav(b.dataset.page));
+$('#loginBtn').onclick=()=>current?nav('profile'):openLogin();
+function openLogin(){modal(`<h3>Login VENOM STORE</h3><label>Username</label><input id="lu" placeholder="Masukkan username"><label>Password</label><input id="lp" type="password" placeholder="Masukkan password"><div class="row"><button class="btn" onclick="login()">Masuk</button><button class="btn secondary" onclick="closeModal()">Batal</button></div>`)}
+function modal(body){$('#modalRoot').innerHTML=`<div class="modalback" onclick="if(event.target===this)closeModal()"><div class="modal">${body}</div></div>`}
+function closeModal(){$('#modalRoot').innerHTML=''}
+function login(){let u=$('#lu').value,p=$('#lp').value;let a=db.users.find(x=>x.username===u&&x.password===p);if(!a){alert('Username atau password salah');return}current=a;closeModal();updateHeader();nav('profile')}
+function logout(){current=null;updateHeader();nav('dashboard')}
+function copyText(id){let t=$('#'+id).value;navigator.clipboard?.writeText(t).then(()=>alert('Teks berhasil disalin')).catch(()=>{ $('#'+id).select();document.execCommand('copy');alert('Teks disalin')})}
+function sendWA(id){let t=encodeURIComponent($('#'+id).value);if(!db.devWa){copyText(id);alert('Nomor WhatsApp toko belum diatur developer. Teks pesanan sudah disalin.');return}window.open('https://wa.me/'+db.devWa+'?text='+t,'_blank')}
+function canSell(){return current&&['dev','admin','owner'].includes(current.role)}
+function createAccount(){modal(`<h3>Create akun baru</h3><label>Username</label><input id="nu"><label>Password</label><input id="np"><label>Role</label><select id="nr"><option value="admin">Admin</option><option value="owner">Owner</option></select><button class="btn" onclick="saveAccount()">Buat akun</button>`)}
+function saveAccount(){let username=$('#nu').value.trim(),password=$('#np').value,role=$('#nr').value;if(!username||!password)return alert('Isi username dan password');if(db.users.some(u=>u.username===username))return alert('Username sudah digunakan');db.users.push({username,password,role,limit:role==='admin'?15:999999});save();closeModal();renderProfile();alert('Akun berhasil dibuat')}
+function topup(i){let u=db.users[i];if(u.role!=='admin')return;u.limit+=10;save();renderProfile();alert('10 limit berhasil ditambahkan untuk '+u.username)}
+function deleteUser(i){if(!confirm('Hapus akun ini?'))return;db.users.splice(i,1);save();renderProfile()}
+function storeSettings(){modal(`<h3>Pengaturan toko & informasi</h3><label>Informasi yang tampil di halaman Informasi</label><textarea id="si" rows="4">${esc(db.info)}</textarea><label>Nomor DANA</label><input id="sd" value="${esc(db.dana)}"><label>Nomor WhatsApp developer (format 62...)</label><input id="sw" value="${esc(db.devWa)}" placeholder="Contoh: 62812xxxx"><label>Upload gambar QRIS</label><input id="sq" type="file" accept="image/*"><p class="muted">QRIS akan ditampilkan pada halaman pembayaran setelah disimpan.</p><button class="btn" onclick="saveSettings()">Simpan pengaturan</button>`)}
+function requestLimit(){let msg=`Permintaan pembelian limit VENOM STORE\nAdmin: ${current.username}\nPaket: 10 limit\nHarga: Rp1.000`;if(db.devWa)window.open('https://wa.me/'+db.devWa+'?text='+encodeURIComponent(msg),'_blank');else{navigator.clipboard?.writeText(msg);alert('Permintaan disalin. Developer belum mengatur nomor WhatsApp.')}}
+function copyStoreInfo(){let t=`VENOM STORE\nDANA: ${db.dana}\n${db.info}`;navigator.clipboard?.writeText(t);alert('Info toko disalin')}
+function showSalesHelp(){modal(`<h3>Panduan transaksi</h3><ol><li>Pembeli memilih produk dan menekan BUY.</li><li>Salin pesanan atau buka WhatsApp.</li><li>Admin/developer memberikan instruksi pembayaran atau QRIS.</li><li>Pembeli upload bukti transfer dan tekan Selesai.</li><li>Developer memverifikasi bukti sebelum pesanan diproses.</li></ol>`)}
+function showCatalog(){modal(`<h3>Katalog produk</h3>${db.products.length?db.products.map(p=>`<p>${esc(p.name)} — ${money(p.price)}</p>`).join(''):'<p>Belum ada produk.</p>'}`)}
+const TITLES={dashboard:'Dashboard Menu',sell:'Beli Akses',info:'Informasi',game:'Game Arena',profile:'Profil'};
+const PLANS={admin:{name:'Admin',price:2000,note:'Maksimal 15 produk'},owner:{name:'Owner',price:4000,note:'Produk tanpa batas'}};
+const IC={game:'<rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10v5M4.5 12.5h5M16 11.5h.01M18.5 13.5h.01"/>',home:'<path d="M3 11l9-8 9 8v10H3z"/>',store:'<path d="M3 9l1.5-5h15L21 9v1a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 13v8h14v-8"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>'};
+const ic=(n,s=22)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
+let order={};
+function save(){try{localStorage.setItem('venom_db',JSON.stringify(db));return true}catch(e){alert('Penyimpanan penuh. Hapus beberapa produk dulu.');return false}}
+function shrink(file,max,q,cb){let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{let k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;let x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',q))};im.onerror=()=>cb(r.result);im.src=r.result};r.readAsDataURL(file)}
+function nav(page){['dashboard','sell','game','info','profile'].forEach(p=>$('#'+p).classList.toggle('hide',p!==page));document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#ttl').textContent=TITLES[page];if(page==='profile')renderProfile();if(page==='sell')renderSell();if(page==='game')gameMenu();else stopGame();window.scrollTo({top:0,behavior:'smooth'})}
+function updateHeader(){$('#loginBtn').innerHTML=current?`<b class="mono">${esc(current.username[0].toUpperCase())}</b>`:ic('user');$('#loginBtn').title=current?current.username:'Login';$('#infoEdit').innerHTML=current&&current.role==='dev'?'<button class="btn" style="margin-top:14px" onclick="editInfo()">Edit teks informasi</button>':''}
+function renderProducts(){let el=$('#products'),by={};db.products.forEach((p,i)=>{let s=p.seller||'VENOM STORE';(by[s]=by[s]||[]).push(i)});let names=Object.keys(by);$('#productCount').textContent=names.length+' penjual';
+if(!names.length){el.innerHTML='<div class="panel empty">Belum ada produk. Penjual yang sudah punya akses bisa menambahkan produk dari menu Profil.</div>';return}
+el.innerHTML=names.map(s=>{let u=db.users.find(x=>x.username===s),n=by[s].length;return `<div class="seller"><div class="shead"><span class="av">${esc(s[0].toUpperCase())}</span><h3>${esc(s)}</h3>${u&&u.role!=='dev'?`<span class="chip alt">${u.role}</span>`:''}<span class="chip">${n} produk</span>${n>2?'<button class="btn secondary small" onclick="rail(this)">Lihat semua</button>':''}</div><div class="rail">${by[s].map(i=>{let p=db.products[i];return `<article class="product">${p.discount?`<span class="chip disc">${esc(p.discount)}</span>`:''}<div class="pic">${p.image?`<img src="${p.image}" alt="">`:ic('store',30)}</div><h3>${esc(p.name)}</h3><div class="desc">${esc(p.desc||'Produk pilihan')}</div><div class="price">${money(p.price)}</div><button class="btn" style="width:100%" onclick="buy(${i})">Beli</button></article>`}).join('')}</div></div>`}).join('')}
+function rail(b){let r=b.closest('.seller').querySelector('.rail');b.textContent=r.classList.toggle('open')?'Ringkas':'Lihat semua'}
+function buy(i){let p=db.products[i],s=p.seller||'VENOM STORE';order={name:p.name,price:p.price,seller:s};let txt=`Halo VENOM STORE, saya ingin membeli:\nPenjual: ${s}\nProduk: ${p.name}\nHarga: ${money(p.price)}\nUsername pembeli: ${current?.username||'Belum login'}\nMohon info pembayaran dan proses selanjutnya.`;
+modal(`<h3>Konfirmasi pesanan</h3><p class="muted">Penjual: <b>${esc(s)}</b></p><p><b>${esc(p.name)}</b><br>Harga: <b>${money(p.price)}</b></p><label>Nomor DANA</label><input readonly value="${esc(db.dana)}">${db.qris?`<img src="${db.qris}" alt="QRIS" style="width:100%;border-radius:14px;margin-bottom:12px">`:''}<textarea id="orderText" rows="6">${esc(txt)}</textarea><div class="row"><button class="btn" onclick="copyText('orderText')">Salin pesanan</button><button class="btn secondary" onclick="sendWA('orderText')">Buka WhatsApp</button></div><p class="muted">Sudah transfer?</p><button class="btn secondary" onclick="proof()">Upload bukti TF</button>`)}
+function proof(){modal(`<h3>Upload bukti pembayaran</h3><p>${esc(order.name)} - ${money(order.price)}</p><label>Nama pembeli</label><input id="buyerName" placeholder="Nama / username"><label>Foto bukti transfer</label><input id="proofFile" type="file" accept="image/*"><p class="muted">Setelah Selesai, WhatsApp dibuka dengan ringkasan. Lampirkan fotonya di chat.</p><button class="btn" onclick="finishProof()">Selesai</button>`)}
+function finishProof(){let f=$('#proofFile').files[0],buyer=$('#buyerName').value||'Pembeli';if(!f)return alert('Upload gambar bukti transfer terlebih dahulu');let msg=`BUKTI PEMBAYARAN VENOM STORE\nPembeli: ${buyer}\nPenjual: ${order.seller}\nProduk: ${order.name}\nTotal: ${money(order.price)}\nBukti transfer: ${f.name}\nMohon verifikasi pembayaran saya.`;closeModal();if(db.devWa)window.open('https://wa.me/'+db.devWa+'?text='+encodeURIComponent(msg),'_blank');else{navigator.clipboard?.writeText(msg);alert('Ringkasan disalin. Nomor WhatsApp developer belum diatur; kirim ringkasan dan foto bukti ke developer.')}}
+function renderSell(){let el=$('#sell');if(current){el.innerHTML=`<div class="panel"><h3>Kamu sudah login</h3><p class="muted">Akun <b>${esc(current.username)}</b> (${current.role}) sudah bisa jualan. Tambah produk lewat Profil.</p><button class="btn" onclick="nav('profile')">Buka profil</button></div>`;return}
+el.innerHTML=`<div class="panel"><div class="row"><span class="sq" data-ic="store"></span><div style="flex:1"><h3 style="margin:0">Beli akses penjual</h3><span class="muted">Produkmu tampil di barisnya sendiri, namamu di atasnya.</span></div></div></div><div class="plans">${Object.entries(PLANS).map(([k,P])=>`<button class="plan${k===plan?' sel':''}" data-k="${k}" onclick="pickPlan('${k}')"><i>${P.name}</i><b>${money(P.price)}</b><span>${P.note}</span></button>`).join('')}</div><div class="panel" style="margin-top:18px"><h3>Data & pembayaran</h3><label>Username (jadi nama penjual)</label><input id="sa_u" maxlength="20" placeholder="contoh: bambang"><label>Nomor WhatsApp kamu</label><input id="sa_w" type="tel" placeholder="62812xxxx"><p>Bayar <b id="sa_t">${money(PLANS[plan].price)}</b> ke DANA <b>${esc(db.dana)}</b> <button class="btn secondary small" onclick="navigator.clipboard?.writeText('${esc(db.dana)}');alert('Nomor DANA disalin')">Salin</button></p>${db.qris?`<img src="${db.qris}" alt="QRIS" style="width:100%;max-width:300px;border-radius:14px;margin-bottom:12px">`:''}<label>Bukti transfer</label><input id="sa_f" type="file" accept="image/*"><button class="btn" onclick="sendAccess()">Kirim permintaan akses</button></div>`;el.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic))}
+function pickPlan(k){plan=k;document.querySelectorAll('.plan').forEach(b=>b.classList.toggle('sel',b.dataset.k===k));$('#sa_t').textContent=money(PLANS[k].price)}
+function sendAccess(){let u=$('#sa_u').value.trim(),w=$('#sa_w').value.replace(/\D/g,''),f=$('#sa_f').files[0],P=PLANS[plan],lc=u.toLowerCase();
+if(!/^[A-Za-z0-9_.]{3,20}$/.test(u))return alert('Username 3-20 karakter: huruf, angka, titik, atau garis bawah');
+if(db.users.some(x=>x.username.toLowerCase()===lc)||db.requests.some(x=>x.username.toLowerCase()===lc))return alert('Username sudah dipakai, pilih yang lain');
+if(w.length<9)return alert('Isi nomor WhatsApp yang bisa dihubungi');if(!f)return alert('Upload bukti transfer dulu');
+db.requests.push({username:u,plan,price:P.price,wa:w,proof:f.name,date:new Date().toLocaleString('id-ID')});if(!save())return;
+let msg=`PERMINTAAN AKSES PENJUAL VENOM STORE\nUsername: ${u}\nPaket: ${P.name} (${money(P.price)})\nWhatsApp: ${w}\nBukti transfer: ${f.name}\nMohon aktifkan akses saya.`;
+if(db.devWa)window.open('https://wa.me/'+db.devWa+'?text='+encodeURIComponent(msg),'_blank');else navigator.clipboard?.writeText(msg);
+modal(`<h3>Permintaan terkirim</h3><p>${db.devWa?'WhatsApp dibuka. Lampirkan foto bukti transfer di chat.':'Ringkasan disalin. Kirim ke developer bersama foto bukti transfer.'}</p><p class="muted">Setelah dicek, developer mengirim username dan password loginmu.</p><button class="btn" onclick="closeModal();nav('dashboard')">Oke</button>`)}
+function addProduct(){if(!canSell())return alert('Login sebagai penjual dulu.');if(current.role==='admin'&&current.limit<=0)return alert('Limit produk habis. Minta tambahan limit ke developer.');modal(`<h3>Tambah produk</h3><p class="muted">Penjual: <b>${esc(current.username)}</b></p><label>Nama produk</label><input id="pn"><div class="formgrid"><div><label>Harga (angka)</label><input id="pp" type="number" min="0"></div><div><label>Tag diskon</label><input id="pd" placeholder="Diskon 10%"></div></div><label>Deskripsi</label><textarea id="pdesc"></textarea><label>Gambar produk</label><input id="pimg" type="file" accept="image/*"><button class="btn" onclick="saveProduct()">Simpan produk</button>`)}
+function saveProduct(){let name=$('#pn').value.trim(),price=Number($('#pp').value);if(!name||price<=0)return alert('Isi nama dan harga yang benar');let file=$('#pimg').files[0],d=$('#pd').value,desc=$('#pdesc').value;
+let finish=image=>{db.products.push({name,price,discount:d,desc,image,seller:current.username});if(current.role==='admin')current.limit--;if(save()){closeModal();renderProducts();renderProfile()}else{db.products.pop();if(current.role==='admin')current.limit++}};
+file?shrink(file,640,.72,finish):finish('')}
+const canEdit=p=>current&&(current.role==='dev'||p.seller===current.username);
+function prodRows(list,all){return list.length?list.map(({p,i})=>`<div class="row prow"><span style="flex:1">${all?`<b>${esc(p.seller||'VENOM STORE')}</b> / `:''}${esc(p.name)} - ${money(p.price)}</span><button class="btn secondary small" onclick="editProduct(${i})">Edit</button><button class="btn danger small" onclick="deleteProduct(${i})">Hapus</button></div>`).join(''):'<p class="muted">Belum ada produk.</p>'}
+function renderProfile(){let el=$('#profileContent');if(!current){el.innerHTML=`<div class="panel"><p>Login untuk membuka profil dan tools penjual.</p><div class="row"><button class="btn" onclick="openLogin()">Login</button><button class="btn secondary" onclick="nav('sell')">Beli akses</button></div></div>`;return}
+let own=db.products.map((p,i)=>({p,i})).filter(x=>x.p.seller===current.username);
+let h=`<div class="panel"><div class="row" style="justify-content:space-between"><div><h3 style="margin:0 0 8px">${esc(current.username)}</h3><span class="chip">${current.role}</span></div><button class="btn secondary small" onclick="logout()">Logout</button></div><div class="stats" style="margin-top:14px"><div class="stat"><b>${current.role==='admin'?current.limit:'∞'}</b>Sisa limit</div><div class="stat"><b>${own.length}</b>Produk saya</div></div></div><div class="panel"><h3>Tools penjual</h3><div class="row"><button class="btn" onclick="addProduct()">+ Tambah produk</button><button class="btn secondary" onclick="nav('dashboard')">Lihat toko</button><button class="btn secondary" onclick="copyStoreInfo()">Salin info toko</button><button class="btn secondary" onclick="showSalesHelp()">Panduan</button></div></div><div class="panel"><h3>Produk saya</h3>${prodRows(own)}</div>`;
+if(current.role==='admin')h+=`<div class="panel"><h3>Limit produk</h3><p>Sisa limit: <b>${current.limit}</b>. 10 limit = Rp1.000, permintaan dikirim ke developer.</p><button class="btn" onclick="requestLimit()">Minta tambah 10 limit</button></div>`;
+if(current.role==='dev')h+=devPanel();el.innerHTML=h}
+function devPanel(){let rq=db.requests.length?db.requests.map((r,i)=>`<div class="row prow"><span style="flex:1"><b>${esc(r.username)}</b> ${PLANS[r.plan].name} ${money(r.price)}<br><span class="muted">WA ${esc(r.wa)} / bukti ${esc(r.proof)}</span></span><button class="btn small" onclick="approve(${i})">Setujui</button><button class="btn danger small" onclick="reject(${i})">Tolak</button></div>`).join(''):'<p class="muted">Belum ada permintaan.</p>';
+return `<div class="panel"><h3>Developer control center</h3><div class="row"><button class="btn" onclick="createAccount()">+ Create akun</button><button class="btn secondary" onclick="storeSettings()">Pengaturan toko</button></div></div><div class="panel"><h3>Permintaan akses</h3>${rq}</div><div class="panel"><h3>Akun & limit</h3><div style="overflow:auto"><table><thead><tr><th>Username</th><th>Role</th><th>Limit</th><th>Aksi</th></tr></thead><tbody>${db.users.map((u,i)=>`<tr><td>${esc(u.username)}</td><td>${u.role}</td><td>${u.role==='admin'?u.limit:'∞'}</td><td>${u.role==='admin'?`<button class="btn small" onclick="topup(${i})">+10</button> `:''}${u.username!=='zx25'?`<button class="btn danger small" onclick="deleteUser(${i})">Hapus</button>`:''}</td></tr>`).join('')}</tbody></table></div></div><div class="panel"><h3>Semua produk</h3>${prodRows(db.products.map((p,i)=>({p,i})),true)}</div>`}
+function approve(i){let r=db.requests[i],P=PLANS[r.plan],pw=Math.random().toString(36).slice(2,8);if(db.users.some(u=>u.username.toLowerCase()===r.username.toLowerCase()))return alert('Username sudah dipakai akun lain');db.users.push({username:r.username,password:pw,role:r.plan,limit:r.plan==='admin'?15:999999});db.requests.splice(i,1);save();renderProfile();
+let t=`Akses ${P.name} VENOM STORE aktif.\nUsername: ${r.username}\nPassword: ${pw}\nLogin lalu buka Profil > Tambah produk.`;modal(`<h3>Akun dibuat</h3><textarea id="credText" rows="5">${esc(t)}</textarea><div class="row"><button class="btn" onclick="copyText('credText')">Salin</button><button class="btn secondary" onclick="window.open('https://wa.me/${r.wa}?text='+encodeURIComponent($('#credText').value),'_blank')">Kirim WhatsApp</button></div>`)}
+function reject(i){if(confirm('Tolak permintaan ini?')){db.requests.splice(i,1);save();renderProfile()}}
+function editProduct(i){let p=db.products[i];if(!canEdit(p))return alert('Ini bukan produkmu.');modal(`<h3>Edit produk</h3><label>Nama</label><input id="en" value="${esc(p.name)}"><label>Harga</label><input id="ep" type="number" value="${p.price}"><label>Deskripsi</label><textarea id="ed">${esc(p.desc)}</textarea><button class="btn" onclick="saveEdit(${i})">Simpan perubahan</button>`)}
+function saveEdit(i){let p=db.products[i];if(!canEdit(p))return;p.name=$('#en').value;p.price=Number($('#ep').value);p.desc=$('#ed').value;save();closeModal();renderProfile();renderProducts()}
+function deleteProduct(i){if(!canEdit(db.products[i])||!confirm('Hapus produk ini?'))return;db.products.splice(i,1);save();renderProfile();renderProducts()}
+function saveSettings(){db.info=$('#si').value;db.dana=$('#sd').value;db.devWa=$('#sw').value.replace(/\D/g,'');let f=$('#sq').files[0],done=()=>{if(!save())return;$('#infoText').textContent=db.info;closeModal();renderProfile();alert('Pengaturan disimpan')};f?shrink(f,900,.9,d=>{db.qris=d;done()}):done()}
+
+const hi=k=>{try{return+localStorage.getItem('venom_hi_'+k)||0}catch(e){return 0}};
+const setHi=(k,v)=>{try{localStorage.setItem('venom_hi_'+k,v)}catch(e){}};
+let G=null;
+function stopGame(){if(G){clearInterval(G.t);clearInterval(G.c);if(G.k)removeEventListener('keydown',G.k);G=null}}
+function editInfo(){modal(`<h3>Edit teks informasi</h3><textarea id="ei" rows="8">${esc(db.info)}</textarea><div class="row"><button class="btn" onclick="saveInfo()">Simpan</button><button class="btn secondary" onclick="closeModal()">Batal</button></div>`)}
+function saveInfo(){if(!current||current.role!=='dev')return;db.info=$('#ei').value;if(!save())return;$('#infoText').textContent=db.info;closeModal()}
+function gameMenu(){stopGame();$('#game').innerHTML=`<div class="qgrid"><button class="card qa" onclick="startSnake()"><div class="qrow"><span class="sq" data-ic="game"></span><span class="chip">Rekor ${hi('snake')}</span></div><div><div class="qt">Ular Venom</div><div class="qs">Makan titik, jangan nabrak</div></div></button><button class="card qa" onclick="startWhack()"><div class="qrow"><span class="sq" data-ic="game"></span><span class="chip">Rekor ${hi('whack')}</span></div><div><div class="qt">Tangkap Ular</div><div class="qs">Tap ular 30 detik, hindari bom</div></div></button></div>`;$('#game').querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic))}
+function startSnake(){stopGame();$('#game').innerHTML=`<div class="panel"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Ular Venom</h3><span class="chip" id="gs">Skor 0</span></div><canvas id="cv" width="300" height="300" style="width:100%;max-width:340px;display:block;margin:12px auto;border:2px solid var(--ink);border-radius:18px;background:#fff;touch-action:none"></canvas><div class="dpad"><button data-d="u">▲</button><button data-d="l">◀</button><button data-d="d">▼</button><button data-d="r">▶</button></div><p class="muted" id="gm">Geser di layar atau pakai tombol. Rekor: ${hi('snake')}</p><div class="row"><button class="btn" onclick="startSnake()">Main lagi</button><button class="btn secondary" onclick="gameMenu()">Menu game</button></div></div>`;
+let cv=$('#cv'),x=cv.getContext('2d'),N=15,S=20,sn=[{x:7,y:7}],d={x:1,y:0},nd=d,sc=0,f;
+let rf=()=>{let p;do{p={x:Math.random()*N|0,y:Math.random()*N|0}}while(sn.some(s=>s.x===p.x&&s.y===p.y));return p};f=rf();
+let dir=(a,b)=>{if(a!==-d.x||b!==-d.y)nd={x:a,y:b}};
+let draw=()=>{x.clearRect(0,0,300,300);x.fillStyle='#0d1b3d';x.beginPath();x.arc(f.x*S+10,f.y*S+10,7,0,7);x.fill();sn.forEach((s,i)=>{x.fillStyle=i?'#0b3fa8':'#2a63e0';x.fillRect(s.x*S+1,s.y*S+1,S-2,S-2)})};
+let end=()=>{stopGame();let b=hi('snake');if(sc>b)setHi('snake',sc);$('#gm').textContent='Game over! Skor '+sc+(sc>b?' - rekor baru!':'')+'. Rekor: '+Math.max(sc,b)};
+let tick=()=>{d=nd;let h={x:sn[0].x+d.x,y:sn[0].y+d.y};if(h.x<0||h.y<0||h.x>=N||h.y>=N||sn.some(s=>s.x===h.x&&s.y===h.y)||sn.length>=N*N-1)return end();sn.unshift(h);if(h.x===f.x&&h.y===f.y){sc++;f=rf();$('#gs').textContent='Skor '+sc}else sn.pop();draw()};
+let M={u:[0,-1],d:[0,1],l:[-1,0],r:[1,0]},K={ArrowUp:'u',ArrowDown:'d',ArrowLeft:'l',ArrowRight:'r'},sx=0,sy=0;
+$('#game').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>dir(...M[b.dataset.d]));
+cv.ontouchstart=e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY};
+cv.ontouchend=e=>{let t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.max(Math.abs(dx),Math.abs(dy))<20)return;Math.abs(dx)>Math.abs(dy)?dir(dx>0?1:-1,0):dir(0,dy>0?1:-1)};
+G={k:e=>{if(K[e.key]){e.preventDefault();dir(...M[K[e.key]])}}};addEventListener('keydown',G.k);G.t=setInterval(tick,130);draw()}
+function startWhack(){stopGame();$('#game').innerHTML=`<div class="panel"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Tangkap Ular</h3><span class="chip" id="gs">Skor 0</span><span class="chip alt" id="gt">30 dtk</span></div><div class="holes" id="hl">${'<button class="hole"></button>'.repeat(9)}</div><p class="muted" id="gm">Tap 🐍 = +1. Jangan tap 💣 (-3). Rekor: ${hi('whack')}</p><div class="row"><button class="btn" onclick="startWhack()">Main lagi</button><button class="btn secondary" onclick="gameMenu()">Menu game</button></div></div>`;
+let hs=[...document.querySelectorAll('#hl .hole')],sc=0,t=30,cur=-1,bomb=false;
+let show=()=>{hs.forEach(h=>h.textContent='');cur=Math.random()*9|0;bomb=Math.random()<.2;hs[cur].textContent=bomb?'💣':'🐍'};
+hs.forEach((h,i)=>h.onclick=()=>{if(i!==cur)return;sc=Math.max(0,sc+(bomb?-3:1));h.textContent='';cur=-1;$('#gs').textContent='Skor '+sc});
+show();G={t:setInterval(show,750),c:setInterval(()=>{t--;$('#gt').textContent=t+' dtk';if(t>0)return;stopGame();hs.forEach(h=>h.textContent='');cur=-1;let b=hi('whack');if(sc>b)setHi('whack',sc);$('#gm').textContent='Waktu habis! Skor '+sc+(sc>b?' - rekor baru!':'')+'. Rekor: '+Math.max(sc,b)},1000)}}
+$('#infoText').textContent=db.info;
+document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic));renderProducts();updateHeader();nav('dashboard');
+</script>
+<script>
+/* ===== Dev monitor, name tag, kunci harga ===== */
+const _rp=renderProducts;renderProducts=function(){_rp();document.querySelectorAll('.seller').forEach(s=>{let n=s.querySelector('.shead h3').textContent;s.querySelectorAll('.product').forEach(a=>a.insertAdjacentHTML('afterbegin',`<span class="ntag">${esc(n)}</span>`))})};
+const _dp=devPanel;devPanel=function(){return _dp().replace('<h3>Semua produk</h3>','<h3>Pantau produk penjual (tanpa login)</h3>')};
+function prodRows(list,all){let dv=current.role==='dev';return list.length?list.map(({p,i})=>{let u=db.users.find(x=>x.username===p.seller);return `<div class="row prow"><span style="flex:1">${all?`<b>${esc(p.seller||'VENOM STORE')}</b> <span class="chip alt">${u?u.role:'dev'}</span> `:''}${esc(p.name)} - ${money(p.price)}${p.discount?` <span class="chip alt">${esc(p.discount)}</span>`:''}${p.lock?' 🔒':''}</span>${dv?`<button class="btn secondary small" onclick="toggleLock(${i})">${p.lock?'Buka kunci':'Kunci'}</button>`:''}<button class="btn secondary small" onclick="editProduct(${i})">Edit</button><button class="btn danger small" onclick="deleteProduct(${i})">Hapus</button></div>`}).join(''):'<p class="muted">Belum ada produk.</p>'}
+function editProduct(i){let p=db.products[i];if(!canEdit(p))return alert('Ini bukan produkmu.');let L=p.lock&&current.role!=='dev',d=L?'disabled':'';modal(`<h3>Edit produk</h3>${L?'<p class="muted">🔒 Harga & diskon dikunci developer.</p>':''}<label>Nama</label><input id="en" value="${esc(p.name)}"><label>Harga</label><input id="ep" type="number" value="${p.price}" ${d}><label>Tag diskon</label><input id="ed2" value="${esc(p.discount||'')}" ${d}><label>Deskripsi</label><textarea id="ed">${esc(p.desc)}</textarea><button class="btn" onclick="saveEdit(${i})">Simpan perubahan</button>`)}
+function saveEdit(i){let p=db.products[i];if(!canEdit(p))return;p.name=$('#en').value;p.desc=$('#ed').value;if(!p.lock||current.role==='dev'){let pr=Number($('#ep').value);if(pr>0)p.price=pr;p.discount=$('#ed2').value}save();closeModal();renderProfile();renderProducts()}
+function toggleLock(i){if(!current||current.role!=='dev')return;db.products[i].lock=!db.products[i].lock;save();renderProfile()}
+/* ===== Saldo virtual ===== */
+const W={get(){try{return JSON.parse(localStorage.getItem('venom_w'))||{b:0,d:''}}catch(e){return{b:0,d:''}}},set(w){try{localStorage.setItem('venom_w',JSON.stringify(w))}catch(e){}}};
+const today=()=>new Date().toISOString().slice(0,10);
+const showBal=()=>{let e=$('#bal');if(e)e.textContent='Saldo '+money(W.get().b)};
+function depo(b){let ok=W.get().d!==today();modal(`<h3>Create deposit (simulasi)</h3><p class="muted">Saldo virtual, bukan uang asli. Minimal Rp30.000.000, hanya 1x per hari. ${ok?'':'<b>Hari ini sudah dibuat.</b>'}</p><label>Jumlah</label><input id="da" type="number" value="30000000" min="30000000"><button class="btn" onclick="mkDepo('${b||''}')">Create</button>`)}
+function mkDepo(b){let w=W.get(),a=Number($('#da').value);if(w.d===today())return alert('Deposit hari ini sudah dibuat. Coba lagi besok.');if(!(a>=30000000))return alert('Minimal Rp30.000.000');w.b+=a;w.d=today();W.set(w);closeModal();b?startSlot(b):showBal()}
+/* ===== Slot: 777, Zeus, Mahjong ===== */
+const SL={s777:{n:'777 Slot',sy:['🍒','🍋','🔔','⭐','7️⃣'],m:[2,3,5,10,40]},zeus:{n:'Zeus Gates',sy:['🦅','🏛️','👑','🔱','⚡'],m:[2,3,5,10,40],z:1},mj:{n:'Mahjong Depo',sy:['🀇','🀙','🀐','🀅','🀄'],m:[2,3,5,10,40]}};
+function startSlot(k){stopGame();let C=SL[k];$('#game').innerHTML=`<div class="panel"><div class="row" style="justify-content:space-between"><h3 style="margin:0">${C.n}</h3><span class="chip" id="bal"></span></div><p class="muted">SIMULASI: saldo virtual, tanpa uang asli.</p><div class="row" style="flex-wrap:nowrap;margin:12px 0">${'<div class="reel">❔</div>'.repeat(3)}</div><label>Taruhan</label><select id="bt">${[100000,500000,1000000,5000000,10000000].map(v=>`<option value="${v}">${money(v)}</option>`).join('')}</select><p id="gm" class="muted">Putar dan semoga menang!</p><div class="row"><button class="btn" id="sp">SPIN</button><button class="btn secondary" onclick="depo('${k}')">Create deposit</button><button class="btn secondary" onclick="gameMenu()">Menu game</button></div></div>`;showBal();
+$('#sp').onclick=()=>{let w=W.get(),b=+$('#bt').value;if(w.b<b)return $('#gm').textContent=w.b<100000?'Saldo habis, kamu KALAH! Create deposit (1x per hari).':'Saldo kurang untuk taruhan ini.';
+w.b-=b;W.set(w);showBal();let r=[0,1,2].map(()=>Math.random()*5|0),el=[...document.querySelectorAll('.reel')],n=0;$('#sp').disabled=true;
+G={t:setInterval(()=>{el.forEach(e=>e.textContent=C.sy[Math.random()*5|0]);if(++n<11)return;stopGame();el.forEach((e,i)=>e.textContent=C.sy[r[i]]);
+let win=0,msg='Zonk!';if(r[0]===r[1]&&r[1]===r[2]){win=b*C.m[r[0]];msg='JACKPOT x'+C.m[r[0]];if(C.z&&Math.random()<.15){let z=2+(Math.random()*4|0);win*=z;msg+=' + ⚡ZEUS x'+z}}else if(new Set(r).size===2){win=b*(C.z?.5:1);msg='Pasangan: '+(C.z?'setengah':'modal')+' kembali'}
+let v=W.get();v.b+=win;W.set(v);showBal();$('#gm').textContent=msg+(win?' | +'+money(win):'')+(v.b<100000?' | Saldo habis, kamu KALAH!':'');$('#sp').disabled=false},80)}}}
+/* ===== Balap motor & kereta ===== */
+function raceMenu(t){stopGame();let c=hi(t+'lv');$('#game').innerHTML=`<div class="panel"><h3>${t==='m'?'Balap Motor':'Balap Kereta'}</h3><p class="muted">Hindari rintangan sampai finis. Menangkan level untuk membuka berikutnya.</p><div class="qgrid">${[1,2,3,4,5,6,7,8].map(l=>`<button class="btn${l>c+1?' secondary':''}" ${l>c+1?'disabled':''} onclick="startRace('${t}',${l})">Level ${l}${l<=c?' ✓':l>c+1?' 🔒':''}</button>`).join('')}</div><button class="btn secondary" style="margin-top:14px" onclick="gameMenu()">Menu game</button></div>`}
+function startRace(t,lv){stopGame();let P=t==='m'?'🏍️':'🚄',O=t==='m'?['🚗','🚧','🛢️']:['🚆','🪨','🚧'],goal=500+lv*250,sp=2.5+lv*.9,L=1,ob=[],d=0,f=0;
+$('#game').innerHTML=`<div class="panel"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Level ${lv}</h3><span class="chip" id="gs">0%</span></div><canvas id="cv" width="300" height="380" style="width:100%;max-width:300px;display:block;margin:12px auto;border:2px solid var(--ink);border-radius:18px;background:${t==='m'?'#cfd6e6':'#e8dfc8'}"></canvas><div class="row" style="justify-content:center"><button class="btn" id="rl">◀</button><button class="btn" id="rr">▶</button></div><p class="muted" id="gm">Geser kiri/kanan atau pakai tombol.</p><div class="row"><button class="btn" onclick="startRace('${t}',${lv})">Ulangi</button><button class="btn secondary" onclick="raceMenu('${t}')">Level</button></div></div>`;
+let x=$('#cv').getContext('2d'),mv=a=>L=Math.max(0,Math.min(2,L+a));$('#rl').onclick=()=>mv(-1);$('#rr').onclick=()=>mv(1);
+let sx=0;$('#cv').ontouchstart=e=>sx=e.touches[0].clientX;$('#cv').ontouchend=e=>{let dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>20)mv(dx>0?1:-1)};
+let end=w=>{stopGame();if(w)setHi(t+'lv',Math.max(hi(t+'lv'),lv));$('#gm').textContent=w?'FINIS! Level '+lv+' selesai'+(lv<8?', level berikutnya terbuka.':' - juara!'):'Tabrakan! Coba lagi.'};
+G={k:e=>{if(e.key==='ArrowLeft')mv(-1);if(e.key==='ArrowRight')mv(1)},t:setInterval(()=>{f++;d++;if(f%Math.max(16,60-lv*6)===0)ob.push({l:Math.random()*3|0,y:-30,e:O[Math.random()*3|0]});ob.forEach(o=>o.y+=sp);ob=ob.filter(o=>o.y<420);
+x.clearRect(0,0,300,380);x.strokeStyle='#0d1b3d55';x.setLineDash([12,12]);[100,200].forEach(a=>{x.beginPath();x.moveTo(a,-(f*sp%24));x.lineTo(a,380);x.stroke()});x.font='34px serif';x.textAlign='center';ob.forEach(o=>x.fillText(o.e,o.l*100+50,o.y));x.fillText(P,L*100+50,340);
+$('#gs').textContent=Math.min(100,d/goal*100|0)+'%';if(ob.some(o=>o.l===L&&o.y>295&&o.y<350))return end(false);if(d>=goal)end(true)},30)};addEventListener('keydown',G.k)}
+/* ===== Ular tangga vs bot ===== */
+function startSnl(){stopGame();let S={16:6,47:26,49:11,56:53,62:19,64:60,87:24,93:73,95:75,98:78},U={1:38,4:14,9:31,21:42,28:84,36:44,51:67,71:91,80:100},p=[0,0],over=0;
+$('#game').innerHTML=`<div class="panel"><h3>Ular Tangga</h3><p class="muted">Kamu vs Bot. Harus pas 100.</p>${['Kamu','Bot'].map((n,i)=>`<label>${n}: <span id="p${i}">0</span>/100</label><div style="height:14px;border:2px solid var(--ink);border-radius:9px;margin:5px 0 12px;overflow:hidden"><div id="b${i}" style="height:100%;width:0;background:var(--blue)"></div></div>`).join('')}<p id="gm" class="muted">Lempar dadu!</p><div class="row"><button class="btn" id="dc">🎲 Lempar</button><button class="btn secondary" onclick="startSnl()">Main lagi</button><button class="btn secondary" onclick="gameMenu()">Menu game</button></div></div>`;
+let mvp=i=>{let r=1+Math.random()*6|0,n=p[i]+r,m=(i?'Bot':'Kamu')+' dapat '+r;if(n>100)n=p[i];else if(S[n]){m+=' 🐍 turun ke '+S[n];n=S[n]}else if(U[n]){m+=' 🪜 naik ke '+U[n];n=U[n]}p[i]=n;$('#p'+i).textContent=n;$('#b'+i).style.width=n+'%';if(n===100){over=1;m=(i?'Bot menang, kamu KALAH!':'KAMU MENANG! 🎉')}$('#gm').textContent=m};
+$('#dc').onclick=()=>{if(over||$('#dc').disabled)return;mvp(0);if(over)return;$('#dc').disabled=true;setTimeout(()=>{mvp(1);$('#dc').disabled=false},700)}}
+/* ===== Menu game ===== */
+const _gmn=gameMenu;gameMenu=function(){_gmn();let c=[['🏍️','Balap Motor',"raceMenu('m')"],['🚄','Balap Kereta',"raceMenu('k')"],['🎰','777 Slot',"startSlot('s777')"],['⚡','Zeus Gates',"startSlot('zeus')"],['🀄','Mahjong Depo',"startSlot('mj')"],['🪜','Ular Tangga',"startSnl()"]];$('#game').insertAdjacentHTML('beforeend',`<p class="muted" style="margin:16px 2px 8px">Game kasino = simulasi saldo virtual (${money(W.get().b)}), bukan uang asli.</p><div class="qgrid">${c.map(g=>`<button class="card qa" style="min-height:110px" onclick="${g[2]}"><span style="font-size:32px">${g[0]}</span><div class="qt">${g[1]}</div></button>`).join('')}</div>`)};
+renderProducts();
+</script>
+</body></html>
